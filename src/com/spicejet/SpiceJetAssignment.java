@@ -25,9 +25,9 @@ public class SpiceJetAssignment {
 	
 	@BeforeMethod
 	public void setUp() {
-		WebDriverManager.firefoxdriver().setup();
+		WebDriverManager.chromedriver().setup();
 		LOG.info("Launching Chrome Browser.");
-		driver = new FirefoxDriver();
+		driver = new ChromeDriver();
 		LOG.info("Maximize browser window.");
 		driver.manage().window().maximize();
 		LOG.info("Deleting all browser cookies.");
@@ -58,15 +58,15 @@ public class SpiceJetAssignment {
 		driver.findElement(By.xpath("(//a[@value='PNQ'])[2]")).click();
 		LOG.info("Selecting departure date System Date + 2.");
 		WebElement departDate = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_txt_Fromdate']"));
-		LocalDate locdate = java.time.LocalDate.now();
-		int day = locdate.getDayOfMonth() + 2;
-		int month = locdate.getMonthValue();
-		int year = locdate.getYear();
+		LocalDate sysDate = java.time.LocalDate.now();
+		int day = sysDate.getDayOfMonth() + 2;
+		int month = sysDate.getMonthValue();
+		int year = sysDate.getYear();
 		String dateVal = day + "-" + month + "-" + year; 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].setAttribute('value','" +dateVal+ "')", departDate);		
 		oneWayRd.click();			// click on anywhere to hide date picker
-		LOG.info("Selecting 5 adulds as passenger.");
+		LOG.info("Selecting 5 adults as passenger.");
 		driver.findElement(By.id("divpaxinfo")).click();
 		WebElement adult = driver.findElement(By.id("ctl00_mainContent_ddl_Adult"));
 		Select adultCount = new Select(adult);
