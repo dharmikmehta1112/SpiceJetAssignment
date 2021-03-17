@@ -6,6 +6,8 @@
       <class name="com.spicejet.SpiceJetAssignment">
         <methods>
           <include name="verifyStudent"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
       </class> <!-- com.spicejet.SpiceJetAssignment -->
     </classes>
